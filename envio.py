@@ -3,7 +3,7 @@ from azure.servicebus import ServiceBusClient, ServiceBusMessage
 from datetime import datetime
 
 # Parámetros de conexión(Cambiar al connection string que desee)
-CONNECTION_STR = '********************************************************************************************'
+CONNECTION_STR = '*************************************************************************'
 QUEUE_NAME = 'incidents'
 
 # Configuración de logging
@@ -11,9 +11,8 @@ logging.basicConfig(level=logging.INFO)
 
 def send_incident_message(sender, incident_id, incident_description, severity, timestamp):
     try:
-        # Crear el contenido del mensaje con la información del incidente
         message_content = (
-            f"Incidente ID: {incident_id}\n"
+            f"Fallo ID: {incident_id}\n"
             f"Descripción: {incident_description}\n"
             f"Severidad: {severity}\n"
             f"Timestamp: {timestamp}"
@@ -22,9 +21,9 @@ def send_incident_message(sender, incident_id, incident_description, severity, t
 
         # Enviar el mensaje a la cola
         sender.send_messages(message)
-        logging.info(f"Mensaje de incidente {incident_id} enviado exitosamente.")
+        logging.info(f"Mensaje de fallo en servidor {incident_id} enviado exitosamente.")
     except Exception as e:
-        logging.error(f"Error al enviar el mensaje de incidente {incident_id}: {str(e)}")
+        logging.error(f"Error al enviar el mensaje de fallo en servidor {incident_id}: {str(e)}")
 
 # Crear cliente del Service Bus
 servicebus_client = ServiceBusClient.from_connection_string(conn_str=CONNECTION_STR, logging_enable=True)

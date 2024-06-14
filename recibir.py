@@ -1,7 +1,7 @@
 from azure.servicebus import ServiceBusClient
 
 # Parámetros de conexión(Cambiar al connection string que desee)
-CONNECTION_STR = '********************************************************************************************'
+CONNECTION_STR = '******************************************************************'
 QUEUE_NAME = 'incidents'
 
 def receive_messages(receiver):
